@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: resumai
+    runtime: node
+    buildCommand: cd server && npm install && cd ../client && npm install && npm run build
+    startCommand: NODE_ENV=production node server/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ANTHROPIC_API_KEY
+        sync: false
